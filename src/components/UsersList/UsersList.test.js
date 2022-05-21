@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { mockUser, mockUsers } from "../../mocks/users";
+import { mockUser } from "../../mocks/users";
 import store from "../../redux/store/store";
 import UsersList from "./UsersList";
 
