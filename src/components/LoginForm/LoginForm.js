@@ -17,6 +17,7 @@ const LoginFromContainer = styled.div`
     border: 1px solid white;
     width: 200px;
     height: 300px;
+    color: white;
   }
   input {
     margin: 10px;
@@ -65,13 +66,19 @@ const LoginForm = () => {
     <LoginFromContainer>
       <form autoComplete="off" noValidate onSubmit={submitLogin}>
         <label htmlFor="username" />
-        <input id="username" value={formData.username} onChange={changeData} />
+        <input
+          id="username"
+          value={formData.username}
+          onChange={changeData}
+          placeholder="Username"
+        />
         <label htmlFor="password" />
         <input
           id="password"
           type="password"
           value={formData.password}
           onChange={changeData}
+          placeholder="Password"
         />
         <button disabled={buttonDisabled} type="submit">
           LOG IN
