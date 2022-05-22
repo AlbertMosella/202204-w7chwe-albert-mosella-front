@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import LoginForm from "./components/LoginForm/LoginForm";
-
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import { loadUsersThunk } from "./redux/thunks/usersThunk";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
@@ -12,10 +13,15 @@ function App() {
   }, [dispatch]);
 
   return (
-    <h1>
-      Life Invader
-      <LoginForm />
-    </h1>
+    <>
+      <h1>Life Invader</h1>
+      <h2>Welcome to the end of your privacy</h2>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
+    </>
   );
 }
 
