@@ -22,3 +22,9 @@ export const loginThunk = (userData) => async (dispatch) => {
 
   dispatch(logInActionCreator(userInfo));
 };
+
+export const registerThunk = (userData) => async (dispatch) => {
+  try {
+    await axios.post(`${url}/users/register`, userData);
+  } catch (error) {}
+};

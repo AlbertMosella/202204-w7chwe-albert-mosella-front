@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { loginThunk } from "../../redux/thunks/usersThunk";
+import { registerThunk } from "../../redux/thunks/usersThunk";
 
-const LoginFromContainer = styled.div`
+const RegisterFromContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +16,7 @@ const LoginFromContainer = styled.div`
     align-items: center;
     border: 1px solid white;
     width: 200px;
-    height: 300px;
+    height: 350px;
   }
   input {
     margin: 10px;
@@ -32,19 +32,25 @@ const LoginFromContainer = styled.div`
   }
 `;
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const blankFields = {
+    name: "",
     username: "",
     password: "",
+    img: "",
   };
 
   const [formData, setFormData] = useState(blankFields);
   const [buttonDisabled, setButtonDisabled] = useState(blankFields);
 
   useEffect(() => {
-    if (formData.username !== "" && formData.password !== "") {
+    if (
+      formData.username !== "" &&
+      formData.password !== "" &&
+      formData.name !== ""
+    ) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
@@ -55,33 +61,53 @@ const LoginForm = () => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
   };
 
-  const submitLogin = (event) => {
+  const submitRegister = (event) => {
     event.preventDefault();
     setFormData(blankFields);
-    dispatch(loginThunk(formData));
+    dispatch(registerThunk(formData));
   };
 
   return (
-    <LoginFromContainer>
-      <form autoComplete="off" noValidate onSubmit={submitLogin}>
+    <RegisterFromContainer>
+      <form autoComplete="off" noValidate onSubmit={submitRegister}>
+        <label htmlFor="name" />
+        <input
+          id="name"
+          value={formData.name}
+          onChange={changeData}
+          placeholder="Name"
+        />
         <label htmlFor="username" />
-        <input id="username" value={formData.username} onChange={changeData} />
+        <input
+          id="username"
+          value={formData.username}
+          onChange={changeData}
+          placeholder="Username"
+        />
         <label htmlFor="password" />
         <input
           id="password"
           type="password"
           value={formData.password}
           onChange={changeData}
+          placeholder="Password"
+        />
+        <label htmlFor="img" />
+        <input
+          id="img"
+          value={formData.img}
+          onChange={changeData}
+          placeholder="Image"
         />
         <button disabled={buttonDisabled} type="submit">
-          LOG IN
+          CREATE USER
         </button>
         <button>
-          <NavLink to="/register">SIGN IN</NavLink>
+          <NavLink to="/login">BACK TO LOGIN</NavLink>
         </button>
       </form>
-    </LoginFromContainer>
+    </RegisterFromContainer>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

@@ -4,5 +4,12 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 
-  background-size: cover;
+  background-color: black;
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: white;
+  margin-top: 50px;
 }
